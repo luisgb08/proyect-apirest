@@ -1,0 +1,8 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Make request to service","Make request to method Get for consul all employees","FAILURE","2023-05-25T07:11:07.356023-05:00[America/Bogota]","0.0","5.31"
+"Make request to service","Make request to method Get for consult all employees","SUCCESS","2023-05-25T08:53:06.572001-05:00[America/Bogota]","0.0","5.05"
+"Make request to service","Make request to method Delete for delete and employee","FAILURE","2023-05-29T09:19:41.845149-05:00[America/Bogota]","0.0","5.08"
+"Make request to service","Make request to method POST for delete and employee","SUCCESS","2023-05-30T15:30:07.110602-05:00[America/Bogota]","0.0","6.55"
+"Make request to service TheCatAPI","Make request to method Get for consult all employees","SUCCESS","2023-05-30T16:58:33.71545-05:00[America/Bogota]","0.0","4.91"
+"Make request to service TheCatAPI","Make request to method Get for consult 10 random images","SUCCESS","2023-05-31T17:03:45.367011-05:00[America/Bogota]","0.0","5.07"
+"Make request to service TheCatAPI","Make request to method Get for consult image by id","SUCCESS","2023-05-31T17:03:50.465039-05:00[America/Bogota]","0.0","0.63"

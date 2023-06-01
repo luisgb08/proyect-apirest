@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="Make request to service TheCatAPI" skipped="0" tests="2" time="5.7" timestamp="2023-05-31 05:03:45"><testcase name="Make request to method Get for consult 10 random images"/><testcase name="Make request to method Get for consult image by id"/></testsuite>

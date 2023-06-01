@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="1" name="Make request to service" skipped="0" tests="1" time="5.08" timestamp="2023-05-29 09:19:41"><testcase name="Make request to method Delete for delete and employee"><failure message="The last response are not equal to the status code expected&#10;Expected: &lt;200&gt;&#10;     but: was &lt;429&gt;" type="java.lang.AssertionError">The last response are not equal to the status code expected
+Expected: &lt;200&gt;
+     but: was &lt;429&gt;</failure><system-err>The last response are not equal to the status code expected
+Expected: &lt;200&gt;
+     but: was &lt;429&gt;
+com.stepdefinitions.ExecutionServicesStepDefinition.seeThatTheIsReturned(ExecutionServicesStepDefinition.java:79)
+✽.See that the is returned 200(file:///Users/lfigueras/Desktop/Semillero%20TAE/ProyectoSemilleroClase1Apis_Orig/src/test/resources/features/services.feature:21)
+</system-err></testcase></testsuite>
