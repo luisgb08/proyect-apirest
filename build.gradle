@@ -54,7 +54,12 @@ dependencies {
 
 }
 
+tasks.register('cleanReport', Delete) {
+    delete "${projectDir}/target/site/serenity"
+}
+
 test {
+    dependsOn cleanReport
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
 }

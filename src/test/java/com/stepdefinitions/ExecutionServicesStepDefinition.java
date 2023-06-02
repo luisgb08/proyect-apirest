@@ -1,6 +1,5 @@
 package com.stepdefinitions;
 
-import com.models.CreateEmployeeRequest;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,12 +19,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static com.exceptions.ErrorAssertion.THE_CODES_DO_NOT_MATCH;
-import static com.factory.CreateEmployeeDataFactory.NAME_EMPLOYEE;
 import static com.questions.Response.*;
-import static com.tasks.Delete.deleteEmployee;
+import static com.tasks.Delete.deleteImage;
 import static com.tasks.Get.executeGetMethodWithThen;
 import static com.tasks.GetSingleImg.executeGetMethodWithThenSingleImg;
-import static com.tasks.Post.createEmployeeWithThe;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -37,6 +34,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class ExecutionServicesStepDefinition {
 
     public String randomImageId;
+
+    ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg", Locale.getDefault());
 
     @Before
     public static void actor() throws IOException {
@@ -93,8 +92,12 @@ public class ExecutionServicesStepDefinition {
 
     @When("Execute the method GET with the random Id")
     public void executeTheMethodGet2WithTheResourceApi() {
-        ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg", Locale.getDefault());
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id")));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id5")));
     }
 
+
+    @When("Execute the method DELETE with the random Id")
+    public void executeTheMethodDeleteWithTheResourceApi() {
+        when(theActorInTheSpotlight()).wasAbleTo(deleteImage(rb.getString("id5")));
+    }
 }

@@ -24,6 +24,7 @@ public class Get implements Task {
     }
 
     public void setRandomIdImage(String randomIdImage) {
+
         this.randomIdImage = randomIdImage;
     }
 
@@ -54,10 +55,10 @@ public class Get implements Task {
 
         //System.out.println(responseBody.get(2).get("id"));
 
-        randomIdImage = responseBody.get(0).get("id").toString();
+        //randomIdImage = responseBody.get(0).get("id").toString();
 
         try {
-            writeRandomIdInFile(randomIdImage);
+            writeRandomIdInFile(responseBody);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

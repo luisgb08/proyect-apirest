@@ -12,17 +12,20 @@ public class Delete implements Task {
     private final String resourceApi;
 
     public Delete(String resorceApi) {
+
         this.resourceApi = resorceApi;
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        given().
-                and().when().delete(resourceApi+"/"+ID_EMPLOYEE)
+        given()
+
+                .and().when().delete(resourceApi + "?api_key=live_6DcftSIDs0osSIuayASrljuhCkwa8T2GxK7dofwo4yYjmrmw0DYZ5XZ4LIdi87NK")
                 .then().extract().response();
     }
 
-    public static Delete deleteEmployee(String resourseApi) {
+    public static Delete deleteImage(String resourseApi) {
+
         return Tasks.instrumented(Delete.class, resourseApi);
     }
 }
