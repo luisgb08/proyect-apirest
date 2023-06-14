@@ -1,5 +1,7 @@
 package com.stepdefinitions;
 
+import com.utils.SelectRandomIdImg;
+import com.utils.TransferResponseListS1;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,26 +10,31 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.http.ContentType;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import static com.exceptions.ErrorAssertion.THE_CODES_DO_NOT_MATCH;
+import static com.factory.CreateEmployeeDataFactory.ID_EMPLOYEE;
 import static com.questions.Response.*;
 import static com.tasks.Delete.deleteImage;
-import static com.tasks.Get.executeGetMethodWithThen;
+import static com.tasks.GetRandomImg.executeGetMethodWithThen;
 import static com.tasks.GetSingleImg.executeGetMethodWithThenSingleImg;
+import static com.tasks.Post.uploadCatWithThe;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.GivenWhenThen.givenThat;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static com.utils.ReadParamProperties.findParam;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -35,7 +42,17 @@ public class ExecutionServicesStepDefinition {
 
     public String randomImageId;
 
-    ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg", Locale.getDefault());
+    public String example;
+
+    public String getVariable() {
+        return Serenity.sessionVariableCalled("example");
+    }
+
+    public void saveVariable(String rs) {
+        Serenity.setSessionVariable("example").to(rs);
+    }
+
+
 
     @Before
     public static void actor() throws IOException {
@@ -52,14 +69,15 @@ public class ExecutionServicesStepDefinition {
 
     @Before
     public static void setUpRest() {
-        RestAssured.baseURI = "https://api.thecatapi.com";
-        RestAssured.basePath = "/v1/images";
+        RestAssured.baseURI = findParam("BASE_URI");
+        RestAssured.basePath = findParam("BASE_PATH");
+
 
         //brinda la info de todos los Rquests y todos los Response
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.requestSpecification = new RequestSpecBuilder()
+       RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+       RestAssured.requestSpecification = new RequestSpecBuilder()
                 //Ejecuta todos los servicios con Aplication Json
-                .setContentType(ContentType.JSON)
+                //.setContentType(ContentType.JSON)
 
                 //omitiendo esta validación de HTTP segurop o HTTPS
                 .setRelaxedHTTPSValidation()
@@ -76,6 +94,10 @@ public class ExecutionServicesStepDefinition {
     public void executeTheMethodGETWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThen(resourceApi));
 
+        //Serenity.setSessionVariable("example").to(resourceApi);
+
+        //saveVariable(resourceApi);
+        //System.out.println("xx: " + randomImageId);
     }
 
     @Then("See that the is returned {int}")
@@ -90,14 +112,71 @@ public class ExecutionServicesStepDefinition {
 
     }
 
-    @When("Execute the method GET with the random Id")
+
+    @When("Execute the method GET with the random Id from Scenario 1")
     public void executeTheMethodGet2WithTheResourceApi() {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id5")));
+        //ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg", Locale.getDefault());
+        //when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id"+ID_EMPLOYEE)));
+        SelectRandomIdImg objRandomIdImg = new SelectRandomIdImg();
+
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(objRandomIdImg.getRandomIdImg()));
+        //example = Serenity.sessionVariableCalled("example");
+        //System.out.println("Paso var: "+ example);
+    }
+
+    //Para consultar todas las images por Id del escenario 1. Una por una, se repite la ejecución del escenario
+    @When("Execute the method GET with the Id {int} from scenario 1")
+    public void executeTheMethodGETWithTheId(Integer numId) {
+        TransferResponseListS1 objSelectIdImg = new TransferResponseListS1();
+
+        List<Map<String, Object>> idList = objSelectIdImg.getResponseList();
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(idList.get(numId).get("id").toString()));
+    }
+
+
+    @When("Execute the method GET with the random Id from file")
+    public void executeTheMethodGet3WithTheResourceApi() {
+        ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg1", Locale.getDefault());
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id"+ID_EMPLOYEE)));
+    }
+
+
+    @When("Execute the method GET with the Id {int} from file")
+    public void executeTheMethodGET4WithTheId(Integer numId) {
+        ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg1", Locale.getDefault());
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id"+numId)));
+    }
+
+    @When("Execute the method POST with the resource api {string}")
+    public void executeTheMethodPOSTWithTheResourceApi(String resourceApi) {
+        //when(theActorInTheSpotlight()).wasAbleTo(uploadCatWithThe(resourceApi));
+
+        uploadCatWithThe(resourceApi);
+
+    }
+
+
+    @When("Execute the method GET with upload Id")
+    public void executeTheMethodGet5WithTheResourceApi() {
+        SelectRandomIdImg objRandomIdImg = new SelectRandomIdImg();
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(objRandomIdImg.getRandomIdImg()));
+
+    }
+
+
+    @When("Execute the method GET with with the resource api {string}")
+    public void executeTheMethodGet6WithTheResourceApi(String resourceApi) {
+        SelectRandomIdImg objRandomIdImg = new SelectRandomIdImg();
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(objRandomIdImg.getRandomIdImg()+"/"+resourceApi));
+
     }
 
 
     @When("Execute the method DELETE with the random Id")
     public void executeTheMethodDeleteWithTheResourceApi() {
-        when(theActorInTheSpotlight()).wasAbleTo(deleteImage(rb.getString("id5")));
+        SelectRandomIdImg objRandomIdImg = new SelectRandomIdImg();
+        when(theActorInTheSpotlight()).wasAbleTo(deleteImage(objRandomIdImg.getRandomIdImg()));
     }
 }
+
+

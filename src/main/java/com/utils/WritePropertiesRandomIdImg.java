@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static com.factory.CreateEmployeeDataFactory.ID_EMPLOYEE;
+
+//Se crea archivo con los id's de las 10 imágenes random consultadas con el servicio
 public class WritePropertiesRandomIdImg {
+
     public static void writeRandomIdInFile(List<Map<String, Object>> idList) throws Exception {
-        int cont = 0;
+
+        int cont = -1;
 
         Properties p = new Properties();
-        OutputStream os = new FileOutputStream("src/test/resources/dataRandomImg.properties");
+        OutputStream os = new FileOutputStream("src/test/resources/dataRandomImg2.properties");
 
         for(Map<String,Object> images : idList)
         {
@@ -20,6 +25,7 @@ public class WritePropertiesRandomIdImg {
 
         }
         p.store(os, null);
+        os.close();
 
     }
 }

@@ -19,8 +19,8 @@ public class Delete implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         given()
-
-                .and().when().delete(resourceApi + "?api_key=live_6DcftSIDs0osSIuayASrljuhCkwa8T2GxK7dofwo4yYjmrmw0DYZ5XZ4LIdi87NK")
+                .header("x-api-key","live_6DcftSIDs0osSIuayASrljuhCkwa8T2GxK7dofwo4yYjmrmw0DYZ5XZ4LIdi87NK")
+                .and().when().delete(resourceApi)
                 .then().extract().response();
     }
 
