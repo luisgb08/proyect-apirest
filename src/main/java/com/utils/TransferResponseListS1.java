@@ -8,6 +8,7 @@ public class TransferResponseListS1 {
 
     static List<Map<String, Object>> responseList;
 
+
     public List<Map<String, Object>> getResponseList() {
         return responseList;
     }

@@ -15,7 +15,7 @@ public class CreateCatImgRequestBuilder {
 
     }
 
-    public CreateCatImgRequestBuilder withFile(File file) {
+    public CreateCatImgRequestBuilder withFile(String file) {
         this.catImgRequest.setFile(file);
         return this;
     }

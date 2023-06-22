@@ -6,7 +6,7 @@
 @Get10Images
 Scenario: Make request to method Get for consult 10 random images
   Given I make the connection to the api
-  When Execute the method GET with the resource api "search?limit=10"
+  When Execute the method GET with the resource api "search"
   Then See that the is returned 200
 
 #Scenario 2:
@@ -83,6 +83,7 @@ Scenario: Make request to method Get for consult image upload
   Given I make the connection to the api
   When Execute the method GET with upload Id
   Then See that the is returned 200
+
 
 #Scenario 8:
 #Se obtiene análisis de la imágen cargada

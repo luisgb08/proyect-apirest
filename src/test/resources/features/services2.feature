@@ -3,7 +3,7 @@
 
 #Scenario 6:
 #Permite probar la carga de una imágen que contenga un gato
-@UploadImage   #Metodo Post
+@UploadImage2   #Metodo Post
 Scenario: Make request to method Post for upload image
   Given I make the connection to the api
   When Execute the method POST with the resource api "upload"

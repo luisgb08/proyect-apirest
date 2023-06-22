@@ -10,6 +10,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -23,10 +24,11 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import static com.exceptions.ErrorAssertion.THE_CODES_DO_NOT_MATCH;
-import static com.factory.CreateEmployeeDataFactory.ID_EMPLOYEE;
+import static com.factory.CreateCatImageDataFactory.IDFILEPOSITION;
+import static com.factory.CreateCatImageDataFactory.IDRPOSITION;
 import static com.questions.Response.*;
-import static com.tasks.Delete.deleteImage;
-import static com.tasks.GetRandomImg.executeGetMethodWithThen;
+import static com.tasks.DeleteCatImage.deleteImage;
+import static com.tasks.GetRandomImgs.executeGetMethodWithThen;
 import static com.tasks.GetSingleImg.executeGetMethodWithThenSingleImg;
 import static com.tasks.Post.uploadCatWithThe;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
@@ -35,6 +37,8 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.GivenWhenThen.givenThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static com.utils.ReadParamProperties.findParam;
+import static com.tasks.Post2.initTest;
+import static com.tasks.Post2.interactions;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -77,7 +81,7 @@ public class ExecutionServicesStepDefinition {
        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
        RestAssured.requestSpecification = new RequestSpecBuilder()
                 //Ejecuta todos los servicios con Aplication Json
-                //.setContentType(ContentType.JSON)
+               .setContentType(ContentType.MULTIPART)
 
                 //omitiendo esta validación de HTTP segurop o HTTPS
                 .setRelaxedHTTPSValidation()
@@ -137,7 +141,7 @@ public class ExecutionServicesStepDefinition {
     @When("Execute the method GET with the random Id from file")
     public void executeTheMethodGet3WithTheResourceApi() {
         ResourceBundle rb = ResourceBundle.getBundle("dataRandomImg1", Locale.getDefault());
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id"+ID_EMPLOYEE)));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThenSingleImg(rb.getString("id"+ IDFILEPOSITION)));
     }
 
 
@@ -151,7 +155,10 @@ public class ExecutionServicesStepDefinition {
     public void executeTheMethodPOSTWithTheResourceApi(String resourceApi) {
         //when(theActorInTheSpotlight()).wasAbleTo(uploadCatWithThe(resourceApi));
 
-        uploadCatWithThe(resourceApi);
+        initTest();
+        interactions("/Users/lfigueras/Documents/proyect-apirest/src/test/resources/AngryCat.png","gabino22");
+
+        //uploadCatWithThe(resourceApi);
 
     }
 

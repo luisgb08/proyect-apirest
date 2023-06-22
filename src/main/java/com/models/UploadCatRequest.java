@@ -4,10 +4,10 @@ import java.io.File;
 
 public class UploadCatRequest {
 
-    private File file;
+    private String file;
     private String sub_id;
 
-    public File getFile() {
+    public String getFile() {
         return file;
     }
 
@@ -15,7 +15,7 @@ public class UploadCatRequest {
         return sub_id;
     }
 
-    public void setFile(File file) {
+    public void setFile(String file) {
         this.file = file;
     }
 

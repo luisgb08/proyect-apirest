@@ -9,6 +9,7 @@
 target
 .build/
 .idea/
+.DS_Store
 
 
 # User-specific stuff

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>TheCatAPI: image upload</title>
+  </head>
+
+  <body>
+      <p>
+          TheCatAPI: image upload
+      </p>
+      <p>
+        Upload Image (gif/jpg/png)
+      </p>
+      <form id="upload_form" enctype="multipart/form-data">
+        <input type="file" id="file" name="file">
+        <p>[optional] sub_id
+          <input type="text" id="sub_id" name="sub_id">
+        </p>
+        <button id="uploadBtn" type="button" onclick="uploadMichiPhoto()">Upload</button>
+      </form>
+      <hr>
+      <p>Request Status:</p>
+      <div id="status"></div>
+      <hr>
+      <p>API Response:</p>
+      <textarea id="response" name="response" cols="50" rows="10" disabled></textarea>
+      <p>Status Code
+          <input type="text" id="statuscode" name="statuscode" disabled>
+      </p>
+      <script src="main.js"></script>
+  </body>
+</html>
