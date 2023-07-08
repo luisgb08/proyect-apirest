@@ -2,18 +2,17 @@ package com.utils;
 
 import java.util.List;
 import java.util.Map;
-
 import static com.factory.CreateCatImageDataFactory.IDRPOSITION;
 
 public class SelectRandomIdImg {
 
     static String randomIdImg;
 
-    public String getRandomIdImg() {
+    public static String getRandomIdImg() {
         return randomIdImg;
     }
 
-    public void setRandomIdImg(String randomIdImg) {
+    public static void setRandomIdImg(String randomIdImg) {
         SelectRandomIdImg.randomIdImg = randomIdImg;
     }
 
@@ -28,14 +27,19 @@ public class SelectRandomIdImg {
             randomNum = Integer.parseInt(IDRPOSITION) - 1;
         }
 
+        //Se selecciona un id random de imagen de los obtenidos del escenario 1
         if (indImgUpload ==1) {
             randomIdImg = idList.get(randomNum).get("id").toString();
             System.out.println("Random Id Selec: " + randomIdImg);
             System.out.println(IDRPOSITION);
         }
+
+        //Con indImgUpload=2 se recibe lista con única posición de la lista que contiene el id de la imagen cargada según respuesta del post
+        //Se consulta la posición fija cero ya que solo se tiene un id de la única imagen cargada
         else {
                 randomIdImg = idList.get(0).get("id").toString();
                 System.out.println("Id Img cargada: " + randomIdImg);
              }
         }
+
 }

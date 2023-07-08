@@ -5,10 +5,8 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.thucydides.core.annotations.Step;
-
 import java.util.List;
 import java.util.Map;
-
 import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findParam;
 import static com.utils.TransferResponseListS1.assignIdImgList;
@@ -34,7 +32,7 @@ public class GetRandomImgs implements Task {
 
         listResponseBodyRImg =
                 given()
-                .header("x-api-key",findParam("apikey"))
+                .header("x-api-key",findParam("APIKEY"))
                 .and().when().get(resourceApi+paramPathS1())
                 .then().extract().body().as(new TypeRef<List<Map<String, Object>>>() {
                 });
@@ -68,7 +66,6 @@ public class GetRandomImgs implements Task {
 
         //Se envía la lista a otra clase para tenerla disponible para su consulta para el escenario 3
         assignIdImgList(listResponseBodyRImg);
-
 
     }
 

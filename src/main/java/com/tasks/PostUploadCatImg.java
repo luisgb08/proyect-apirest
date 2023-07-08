@@ -1,76 +1,49 @@
 package com.tasks;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.drivers.DriverChrome;
+import com.userinterfaces.Cats;
 import org.json.JSONObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.drivers.DriverChrome.*;
+import com.userinterfaces.Cats.*;
 
-import static com.utils.SelectRandomIdImg.randomIdImgMethod;
+import static com.drivers.DriverChrome.closeDriver;
 import static com.utils.ReadParamProperties.findParam;
+import static com.utils.SelectRandomIdImg.randomIdImgMethod;
 
-public class Post2 {
+public class PostUploadCatImg {
 
-    static WebDriver driver;
+    static String statusCod;
 
-    public static void openDataForm(String urlPage) {
-
-        //Config del driver
-        WebDriverManager.chromedriver().setup();
-
-        //Instancia del driver
-        driver = new ChromeDriver();
-
-        //Maximizar ventana
-        driver.manage().window().maximize();
-
-        //Config de tiempo de espera (implícito): Tiempo general. Tiempo que va a esperar por cada elemento con el que se interactue. Es la espera max
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-        //Explícita: Es propia de un elemento y en base a una condición. Por ejemplo para un elemento como el logo de youtube, esperar a que esté visible (a un tipo de acción)
-
-        //Espera de java. Es absoluta. No recomendada
-        //Thread.sleep(5000);
-
-        //Abrir página
-        driver.get(urlPage);
-
+    public static String getUploadCatImgStatusCod() {
+        return statusCod;
     }
 
+    public static void setUploadCatImgStatusCod(String statusCod) {
+        PostUploadCatImg.statusCod = statusCod;
+    }
 
-    public static void interactions (String pathFile, String subid) {
+    public static void dataFormWebInteractions(String pathFile, String subid, String urlreq, String apikey) {
+        System.out.println("prueba");
+        Cats objIntFields = new Cats();
 
-        //Mapear elemento 1
-        WebElement inputfile = driver.findElement(By.id("file"));
+        objIntFields.URLPOSTREQ.sendKeys(String.valueOf(urlreq));
 
-        //Mapear elemento 2
-        WebElement inputsubid = driver.findElement(By.id("sub_id"));
-
-        //Mapear elemento 3
-        WebElement uploadBotton = driver.findElement(By.id("uploadBtn"));
-
-        //Mapear elemento 4
-        WebElement response = driver.findElement(By.id("response"));
-
-        //Mapear elemento 5
-        WebElement statusCode = driver.findElement(By.id("statuscode"));
+        objIntFields.APIKEY.sendKeys(String.valueOf(apikey));
 
         //Interacción 1: Enviar valor
-        inputfile.sendKeys(String.valueOf(pathFile));
+        objIntFields.INPUT_FILE.sendKeys(String.valueOf(pathFile));
 
         //Interacción 2: Enviar valor
-        inputsubid.sendKeys(String.valueOf(subid));
+        objIntFields.INPUT_SUBID.sendKeys(String.valueOf(subid));
 
-        //Acá se hace el Post con Java Script
+        //Acá se hace el Post con JavaScript
         //Hacer clic sobre el botón para la acción: Submit
-        uploadBotton.click();
+        objIntFields.UPLOAD_BUTTON.click();
 
         try {
             Thread.sleep(120000);
@@ -79,7 +52,7 @@ public class Post2 {
         }
 
         //Obtener respuesta
-        String resp = response.getAttribute("value");
+        String resp = objIntFields.RESPONSE.getAttribute("value");
 
         //Imprimir respuesta de operación
         System.out.println("Respuesta: "+ resp);
@@ -87,9 +60,10 @@ public class Post2 {
         System.out.println("\n");
 
         //Obtener status code
-        String statusCod = statusCode.getAttribute("value");
+        statusCod = objIntFields.STATUS_CODE.getAttribute("value");
 
-        driver.close();
+        //Cerrar navegador
+        closeDriver();
 
         if ("201".equals(statusCod)) {
 
@@ -107,7 +81,6 @@ public class Post2 {
 
             listResponseBodyUpImg.add(mapJsonObj);
 
-
             //Se llama a un método randomIdImgMethod de la clase SelectRandomIdImg para enviarle la lista con el único response de la imagen cargada
             //y seleccionar el id de la imagen cargada
             randomIdImgMethod(listResponseBodyUpImg, 2);
@@ -117,22 +90,4 @@ public class Post2 {
             }
         }
     }
-
-
-    //Hacer uso de un metodo al que le pida la operación y resultado esperado. Refactorizar
-    //@Test
-    //public void test1() {
-//
-    //
-    //}
-//
-    //@After
-    //public void finishTest() throws InterruptedException {
-//
-    //    //Espera de java. Es absoluta. No recomendada
-    //    Thread.sleep(5000);
-//
-    //    //Cerrar el navegador
-    //    driver.close();
-    //}
 }

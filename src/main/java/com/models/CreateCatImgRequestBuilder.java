@@ -1,7 +1,5 @@
 package com.models;
 
-import java.io.File;
-
 public class CreateCatImgRequestBuilder {
 
     private UploadCatRequest catImgRequest;

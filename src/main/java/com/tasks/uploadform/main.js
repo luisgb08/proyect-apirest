@@ -2,8 +2,11 @@ var myFormData = new FormData();
 
 function uploadMichiPhoto() {
 
-    var api_url = "https://api.thecatapi.com/v1/images/upload"
-    var api_key = "live_6DcftSIDs0osSIuayASrljuhCkwa8T2GxK7dofwo4yYjmrmw0DYZ5XZ4LIdi87NK"
+    //var api_url = "https://api.thecatapi.com/v1/images/upload"
+    //var api_key = "live_6DcftSIDs0osSIuayASrljuhCkwa8T2GxK7dofwo4yYjmrmw0DYZ5XZ4LIdi87NK"
+
+    var api_url = document.getElementById("urlreq").value.toString()
+    var api_key = document.getElementById("apikey").value.toString()
 
     // get the inputted
     var file_input = document.getElementById("file")
@@ -16,7 +19,7 @@ function uploadMichiPhoto() {
 
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.status == 201) {
-        updateResponseOutput("Success: " + xmlhttp.responseText);
+        updateResponseOutput(xmlhttp.responseText);
         updateResponseOutput2(xmlhttp.status);
       } else if (xmlhttp.status == 400) {
         updateResponseOutput("Error: " + xmlhttp.responseText);

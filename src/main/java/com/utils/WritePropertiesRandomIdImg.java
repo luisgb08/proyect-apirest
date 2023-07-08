@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import static com.utils.ReadParamProperties.findParam;
+
 //Se crea archivo con los id's de las 10 imágenes random consultadas con el servicio
 public class WritePropertiesRandomIdImg {
 
@@ -14,7 +16,7 @@ public class WritePropertiesRandomIdImg {
         int cont = -1;
 
         Properties p = new Properties();
-        OutputStream os = new FileOutputStream("src/test/resources/dataRandomImg2.properties");
+        OutputStream os = new FileOutputStream(findParam("NAME_AUTO_FID_IMG"));
 
         for(Map<String,Object> images : idList)
         {
@@ -24,6 +26,6 @@ public class WritePropertiesRandomIdImg {
         }
         p.store(os, null);
         os.close();
-
     }
+
 }

@@ -1,7 +1,5 @@
 package com.models;
 
-import java.io.File;
-
 public class UploadCatRequest {
 
     private String file;
