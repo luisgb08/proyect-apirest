@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.time.Duration;
 
 public class DriverChrome {
@@ -25,6 +24,7 @@ public class DriverChrome {
 
         driver.get(url);
         return driver;
+
     }
 
     public static void closeDriver() {

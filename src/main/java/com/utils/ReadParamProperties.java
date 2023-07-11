@@ -9,4 +9,10 @@ public class ReadParamProperties {
         ResourceBundle rb = ResourceBundle.getBundle("param", Locale.getDefault());
         return rb.getString(idParam);
     }
+
+    public static String findIdImgFile (String numberID) {
+        ResourceBundle rb = ResourceBundle.getBundle(findParam("NAME_FID_IMG"), Locale.getDefault());
+        return rb.getString(numberID);
+    }
+
 }

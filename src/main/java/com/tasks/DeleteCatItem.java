@@ -6,13 +6,12 @@ import net.serenitybdd.screenplay.Tasks;
 import static com.utils.ReadParamProperties.findParam;
 import static net.serenitybdd.rest.SerenityRest.given;
 
-public class DeleteCatImage implements Task {
+public class DeleteCatItem implements Task {
 
     private final String resourceApi;
 
-    public DeleteCatImage(String resorceApi) {
-
-        this.resourceApi = resorceApi;
+    public DeleteCatItem(String resourceApi) {
+        this.resourceApi = resourceApi;
     }
 
     @Override
@@ -23,8 +22,8 @@ public class DeleteCatImage implements Task {
                 .then().extract().response();
     }
 
-    public static DeleteCatImage deleteImage(String resourseApi) {
-        return Tasks.instrumented(DeleteCatImage.class, resourseApi);
+    public static DeleteCatItem deleteCatItemWithThe(String resourceApi) {
+        return Tasks.instrumented(DeleteCatItem.class, resourceApi);
     }
 
 }

@@ -8,6 +8,7 @@ public class MakeParamsPathS1 {
     static String mime_type = findParam("MIME_TYPE");
     static String format = findParam("FORMAT");
     static String limit = findParam("LIMIT");
+
     public String getLimit() {
         return limit;
     }
@@ -21,12 +22,12 @@ public class MakeParamsPathS1 {
 
         int ind = 0;
 
-        if (!size.equals("-")) {
+        if (!("-").equals(size)) {
             ind = ind + 1;
             paramPath = "size=" + size;
         }
 
-        if (!mime_type.equals("-")) {
+        if (!("-").equals(mime_type)) {
             if (ind > 0) {
                 paramPath = paramPath + "&";
             }
@@ -34,7 +35,7 @@ public class MakeParamsPathS1 {
             paramPath = paramPath + "mime_types=" + mime_type;
         }
 
-        if (!format.equals("-")) {
+        if (!("-").equals(format)) {
             if (ind > 0) {
                 paramPath = paramPath + "&";
             }
@@ -42,7 +43,7 @@ public class MakeParamsPathS1 {
             paramPath = paramPath + "format=" + format;
         }
 
-        if (!limit.equals("0")) {
+        if (!("0").equals(limit)) {
             if (ind > 0) {
                 paramPath = paramPath + "&";
             }
@@ -57,8 +58,7 @@ public class MakeParamsPathS1 {
             paramPath = "";
         }
 
-        System.out.println("params: "+ paramPath);
         return paramPath;
-
     }
+
 }

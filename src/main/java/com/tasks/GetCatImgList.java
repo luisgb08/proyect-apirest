@@ -11,48 +11,39 @@ import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findParam;
 import static com.utils.TransferResponseListS1.assignIdImgList;
 import static com.utils.WritePropertiesRandomIdImg.writeRandomIdInFile;
-import static com.utils.SelectRandomIdImg.randomIdImgMethod;
+import static com.utils.SelectSaveRandomIdImg.randomIdImgMethod;
 import static net.serenitybdd.rest.SerenityRest.given;
 
-
-public class GetRandomImgs implements Task {
+public class GetCatImgList implements Task {
 
     private final String resourceApi;
 
-    public GetRandomImgs(String resourceApi) {
+    public GetCatImgList(String resourceApi) {
         this.resourceApi = resourceApi;
     }
-
 
     @Step("{0} consume get method")
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        List<Map<String, Object>> listResponseBodyRImg =  null;
+        List<Map<String, Object>> listResponseBodyRImg = null;
 
         listResponseBodyRImg =
-                given()
+        given()
                 .header("x-api-key",findParam("APIKEY"))
-                .and().when().get(resourceApi+paramPathS1())
+                .and().when().get(resourceApi)
                 .then().extract().body().as(new TypeRef<List<Map<String, Object>>>() {
                 });
 
-        //System.out.println("Total images : "+ listResponseBodyRImg.size());
 
         System.out.println("All images ids are: ");
-
-
         for(Map<String,Object> images : listResponseBodyRImg)
         {
             System.out.println(images.get("id"));
         }
 
 
-        //System.out.println(listResponseBodyRImg.get(2).get("id"));
-
-        //randomIdImage = listResponseBodyRImg.get(0).get("id").toString();
-
-        //Se escribe archivo con id recibidos del response del escenario 1
+        //Se escribe archivo con ids recibidos del response del escenario 1
         try {
             writeRandomIdInFile(listResponseBodyRImg);
         } catch (Exception e) {
@@ -63,15 +54,13 @@ public class GetRandomImgs implements Task {
         //y seleccionar un id de imagen aleatorio
         randomIdImgMethod(listResponseBodyRImg, 1);
 
-
         //Se envía la lista a otra clase para tenerla disponible para su consulta para el escenario 3
         assignIdImgList(listResponseBodyRImg);
 
     }
 
-    public static GetRandomImgs executeGetMethodWithThen(String resourceApi) {
-        return Tasks.instrumented(GetRandomImgs.class, resourceApi);
+    public static GetCatImgList executeGetMethodWithThe(String resourceApi) {
+        return Tasks.instrumented(GetCatImgList.class, resourceApi);
     }
-
 
 }

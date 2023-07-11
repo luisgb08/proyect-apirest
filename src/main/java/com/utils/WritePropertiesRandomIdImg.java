@@ -5,7 +5,6 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 import static com.utils.ReadParamProperties.findParam;
 
 //Se crea archivo con los id's de las 10 imágenes random consultadas con el servicio

@@ -13,7 +13,6 @@ public class UploadCatImgDataForm implements Task {
     private final String uploadSubId;
     private final String resourceApi;
 
-
     public UploadCatImgDataForm(String pathImg, String catImgOk, String uploadSubId, String resourceApi) {
         this.pathImg = pathImg;
         this.catImgOk = catImgOk;
@@ -26,7 +25,7 @@ public class UploadCatImgDataForm implements Task {
         dataFormWebInteractions(pathImg + catImgOk, uploadSubId, findParam("BASE_URI")+findParam("BASE_PATH")+"/"+resourceApi, findParam("APIKEY"));
     }
 
-    public static UploadCatImgDataForm uploadCatImgWithThe(String pathImg, String catImgOk, String uploadSubId, String resourceApi) {
+    public static UploadCatImgDataForm uploadCatImgWithTheElements(String pathImg, String catImgOk, String uploadSubId, String resourceApi) {
         return Tasks.instrumented(UploadCatImgDataForm.class, pathImg, catImgOk, uploadSubId, resourceApi);
     }
 

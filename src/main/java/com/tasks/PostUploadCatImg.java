@@ -1,19 +1,9 @@
 package com.tasks;
 
-import com.drivers.DriverChrome;
 import com.userinterfaces.Cats;
-import org.json.JSONObject;
-import org.openqa.selenium.WebDriver;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.drivers.DriverChrome.*;
-import com.userinterfaces.Cats.*;
-
 import static com.drivers.DriverChrome.closeDriver;
-import static com.utils.ReadParamProperties.findParam;
-import static com.utils.SelectRandomIdImg.randomIdImgMethod;
+import static com.utils.ExtractTransferPostImgId.extractTPostImgId;
+import static com.utils.SelectSaveRandomIdImg.randomIdImgMethod;
 
 public class PostUploadCatImg {
 
@@ -28,7 +18,6 @@ public class PostUploadCatImg {
     }
 
     public static void dataFormWebInteractions(String pathFile, String subid, String urlreq, String apikey) {
-        System.out.println("prueba");
         Cats objIntFields = new Cats();
 
         objIntFields.URLPOSTREQ.sendKeys(String.valueOf(urlreq));
@@ -55,7 +44,7 @@ public class PostUploadCatImg {
         String resp = objIntFields.RESPONSE.getAttribute("value");
 
         //Imprimir respuesta de operación
-        System.out.println("Respuesta: "+ resp);
+        System.out.println("Response POST: "+ resp);
 
         System.out.println("\n");
 
@@ -65,29 +54,15 @@ public class PostUploadCatImg {
         //Cerrar navegador
         closeDriver();
 
+        //Si la carga de la imagen es satisfactoria, para cuando se ejecuta el POST con imagen correcta de gato
         if ("201".equals(statusCod)) {
 
-            JSONObject jsonObject = new JSONObject(resp);
-            String id = jsonObject.getString("id");
-            System.out.println("id: " + id);
+            //Se llama a un método randomIdImgMethod de la clase SelectRandomIdImg para enviarle la lista con el id del response de la única imágen cargada
 
-
-            // Refactorizar de acá hacia abajo
-
-            List<Map<String, Object>> listResponseBodyUpImg = new ArrayList<>();
-
-            Map<String, Object> mapJsonObj = new HashMap<String, Object>();
-            mapJsonObj.put("id", id);
-
-            listResponseBodyUpImg.add(mapJsonObj);
-
-            //Se llama a un método randomIdImgMethod de la clase SelectRandomIdImg para enviarle la lista con el único response de la imagen cargada
-            //y seleccionar el id de la imagen cargada
-            randomIdImgMethod(listResponseBodyUpImg, 2);
-
-            for (Map<String, Object> images : listResponseBodyUpImg) {
-                System.out.println(images.get("id"));
-            }
+            //Se invoca método 'extractTPostImgId' al que se le pasa la respuesta obtenida en String, se encapsula en objeto Json, se extrae el id de la imagen cargada
+            //Se crea lista con mapa con el id de la imagen, luego dicha lista se comparte con el otra clase para tenerla disponible en el escenario de consulta con GET de la imagen cargada
+            randomIdImgMethod(extractTPostImgId(resp), 2);
         }
     }
+
 }

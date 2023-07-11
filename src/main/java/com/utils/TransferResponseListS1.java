@@ -7,11 +7,11 @@ public class TransferResponseListS1 {
 
     static List<Map<String, Object>> responseList;
 
-    public List<Map<String, Object>> getResponseList() {
+    public static List<Map<String, Object>> getResponseList() {
         return responseList;
     }
 
-    public void setResponseList(List<Map<String, Object>> responseList) {
+    public static void setResponseList(List<Map<String, Object>> responseList) {
         TransferResponseListS1.responseList = responseList;
     }
 

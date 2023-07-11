@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import static com.factory.CreateCatImageDataFactory.IDRPOSITION;
 
-public class SelectRandomIdImg {
+public class SelectSaveRandomIdImg {
 
     static String randomIdImg;
 
@@ -13,7 +13,7 @@ public class SelectRandomIdImg {
     }
 
     public static void setRandomIdImg(String randomIdImg) {
-        SelectRandomIdImg.randomIdImg = randomIdImg;
+        SelectSaveRandomIdImg.randomIdImg = randomIdImg;
     }
 
 

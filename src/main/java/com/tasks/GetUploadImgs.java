@@ -7,12 +7,13 @@ import net.thucydides.core.annotations.Step;
 import static com.utils.ReadParamProperties.findParam;
 import static net.serenitybdd.rest.SerenityRest.given;
 
-
 public class GetUploadImgs implements Task {
+    private final String resourceApi;
     private final String subId;
     private final Integer limit;
 
-    public GetUploadImgs(String subId, Integer limit) {
+    public GetUploadImgs(String resourceApi, String subId, Integer limit) {
+        this.resourceApi = resourceApi;
         this.subId = subId;
         this.limit = limit;
     }
@@ -23,12 +24,12 @@ public class GetUploadImgs implements Task {
                 given()
                 .header("x-api-key",findParam("APIKEY"))
                 .queryParam("limit", limit).queryParam("sub_id", subId)
-                .and().when().get()
+                .and().when().get(resourceApi)
                 .then().extract().body();
     }
 
-    public static GetUploadImgs executeGetMethodWithUploadImgs(String subId, Integer limit) {
-        return Tasks.instrumented(GetUploadImgs.class, subId, limit);
+    public static GetUploadImgs executeGetMethodForUploadImgWithTheElements(String resourceApi, String subId, Integer limit) {
+        return Tasks.instrumented(GetUploadImgs.class, resourceApi, subId, limit);
     }
 
 }
