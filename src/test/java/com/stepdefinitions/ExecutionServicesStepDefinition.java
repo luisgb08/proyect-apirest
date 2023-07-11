@@ -16,6 +16,7 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import java.io.IOException;
 import static com.exceptions.ErrorAssertion.THE_CODES_DO_NOT_MATCH;
+import static com.exceptions.ErrorAssertion.THE_MESSAGE_DO_NOT_MATCH;
 import static com.factory.CreateCatImageDataFactory.IDFILEPOSITION;
 import static com.questions.Response.*;
 import static com.tasks.DeleteCatItem.deleteCatItemWithThe;
@@ -158,7 +159,7 @@ public class ExecutionServicesStepDefinition {
 
     @Then("Check if the cat favourite was create successfuly")
     public void checkIfTheCatFavouriteWasCreateSuccessfuly() {
-        assertThat("The message do not match",
+        assertThat(THE_MESSAGE_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getMessage()), equalTo(SUCCESS_MSG));
     }
 
@@ -175,7 +176,7 @@ public class ExecutionServicesStepDefinition {
 
     @Then("Check if the cat favourite was deleted successfuly")
     public void checkIfTheCatFavouriteWasDeletedSuccessfuly() {
-        assertThat("The meesage do not match",
+        assertThat(THE_MESSAGE_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getMessage()), equalTo(SUCCESS_MSG));
     }
 
