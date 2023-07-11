@@ -1,24 +1,26 @@
 @services
   Feature: Make request to service TheCatAPI
 
-#Scenario 1:
-#Se consultan 10 imágenes random según API
+# Scenario 1:
+# Se consultan 10 imágenes random según API
 @Get10Images
 Scenario: Make request to method Get for consult 10 random images
   Given I make the connection to the api
   When Execute the method GET with the resource api "images/search"
   Then See that the code returned is 200
 
-#Scenario 2:
-#Se consulta una imagen dado su Id, el Id es consultado aleatoriamente de una lista generada con el response del escernario 1
+# Scenario 2:
+# Se consulta una imagen dado su Id, el Id es consultado aleatoriamente
+# de una lista generada con el response del escernario 1
 @GetImageIdScenario1
 Scenario: Make request to method Get for consult image by id
   Given I make the connection to the api
   When Execute the method GET with random Id from Scenario1 with the resource api "images"
   Then See that the code returned is 200
 
-#Scenario 3:
-#Se quiere ejecutar petición Get por cada Id de la respuesta del primer escenario. Consultar uno a uno los 10 id's
+# Scenario 3:
+# Se quiere ejecutar petición Get por cada Id de la respuesta del primer escenario.
+# Consultar uno a uno los 10 id's
 @GetAllImagesIdScenario1
 Scenario Outline: Make request to method Get for consult image by all ids from Scenario 1
   Given I make the connection to the api
@@ -38,7 +40,7 @@ Scenario Outline: Make request to method Get for consult image by all ids from S
     |9   |
 
 
-#Scenario 4:
+# Scenario 4:
 @GetRandomImageIdFile
 Scenario: Make request to method Get for consult image by id from file
   Given I make the connection to the api
@@ -46,8 +48,9 @@ Scenario: Make request to method Get for consult image by id from file
   Then See that the code returned is 200
 
 
-#Scenario 5:
-#Se quiere ejecutar petición Get por cada Id de imagen contenido en el archivo de insumo para consulta. Consultar uno a uno los 10 id's
+# Scenario 5:
+# Se quiere ejecutar petición Get por cada Id de imagen contenido en el archivo de insumo para consulta.
+# Consultar uno a uno los 10 id's
 @GetAllImagesIdFile
 Scenario Outline: Make request to method Get for consult image by all ids from file
   Given I make the connection to the api
@@ -122,7 +125,6 @@ Scenario: Make request to method Delete for delete fav cat image by id
   When Execute the method DELETE with fav Id with the resource api "favourites"
   Then See that the code returned is 200
   Then Check if the cat favourite was deleted successfuly
-
 
 # --------------------- FAVOURITES
 

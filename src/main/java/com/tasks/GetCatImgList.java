@@ -7,11 +7,10 @@ import net.serenitybdd.screenplay.Tasks;
 import net.thucydides.core.annotations.Step;
 import java.util.List;
 import java.util.Map;
-import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findParam;
 import static com.utils.TransferResponseListS1.assignIdImgList;
 import static com.utils.WritePropertiesRandomIdImg.writeRandomIdInFile;
-import static com.utils.SelectSaveRandomIdImg.randomIdImgMethod;
+import static com.utils.SelectSaveIdImg.assignRandomUpIdImg;
 import static net.serenitybdd.rest.SerenityRest.given;
 
 public class GetCatImgList implements Task {
@@ -50,9 +49,9 @@ public class GetCatImgList implements Task {
             throw new RuntimeException(e);
         }
 
-        //Se llama a un método randomIdImgMethod de la clase SelectRandomIdImg para enviarle la lista con el response del primer escenario
+        //Se llama al método assignRandomUpIdImg de la clase SelectSaveIdImg para enviarle la lista con el response del primer escenario
         //y seleccionar un id de imagen aleatorio
-        randomIdImgMethod(listResponseBodyRImg, 1);
+        assignRandomUpIdImg(listResponseBodyRImg, 1);
 
         //Se envía la lista a otra clase para tenerla disponible para su consulta para el escenario 3
         assignIdImgList(listResponseBodyRImg);

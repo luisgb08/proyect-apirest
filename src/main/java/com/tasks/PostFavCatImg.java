@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import static com.models.CreateFavCatImgRequestBuilder.aFavCatImg;
 import static com.utils.ReadParamProperties.findParam;
 import static com.utils.SaveFavCatIdImg.*;
-import static com.utils.SelectSaveRandomIdImg.getRandomIdImg;
+import static com.utils.SelectSaveIdImg.getIdImg;
 import static net.serenitybdd.rest.SerenityRest.given;
 
 public class PostFavCatImg implements Task {
@@ -23,7 +23,7 @@ public class PostFavCatImg implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
          CreateFavCatRequest catfav = aFavCatImg()
-                .withImage_id(getRandomIdImg())
+                .withImage_id(getIdImg())
                 .withSub_id(findParam("UPLOAD_SUB_ID"))
                 .build();
 

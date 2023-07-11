@@ -9,13 +9,6 @@ public class MakeParamsPathS1 {
     static String format = findParam("FORMAT");
     static String limit = findParam("LIMIT");
 
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        MakeParamsPathS1.limit = limit;
-    }
     static String paramPath = "";
 
     public static String paramPathS1 () {

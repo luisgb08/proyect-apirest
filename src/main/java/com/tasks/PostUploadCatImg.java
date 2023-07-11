@@ -3,7 +3,7 @@ package com.tasks;
 import com.userinterfaces.Cats;
 import static com.drivers.DriverChrome.closeDriver;
 import static com.utils.ExtractTransferPostImgId.extractTPostImgId;
-import static com.utils.SelectSaveRandomIdImg.randomIdImgMethod;
+import static com.utils.SelectSaveIdImg.assignRandomUpIdImg;
 
 public class PostUploadCatImg {
 
@@ -61,7 +61,7 @@ public class PostUploadCatImg {
 
             //Se invoca método 'extractTPostImgId' al que se le pasa la respuesta obtenida en String, se encapsula en objeto Json, se extrae el id de la imagen cargada
             //Se crea lista con mapa con el id de la imagen, luego dicha lista se comparte con el otra clase para tenerla disponible en el escenario de consulta con GET de la imagen cargada
-            randomIdImgMethod(extractTPostImgId(resp), 2);
+            assignRandomUpIdImg(extractTPostImgId(resp), 2);
         }
     }
 

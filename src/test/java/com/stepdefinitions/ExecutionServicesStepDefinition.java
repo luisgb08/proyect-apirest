@@ -29,7 +29,7 @@ import static com.utils.Constants.SUCCESS_MSG;
 import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findIdImgFile;
 import static com.utils.SaveFavCatIdImg.getCatFavIdImg;
-import static com.utils.SelectSaveRandomIdImg.getRandomIdImg;
+import static com.utils.SelectSaveIdImg.getIdImg;
 import static com.utils.TransferResponseListS1.getResponseList;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
@@ -84,7 +84,7 @@ public class ExecutionServicesStepDefinition {
     //Se consulta una imagen según un id aleatorio del escenario 1
     @When("Execute the method GET with random Id from Scenario1 with the resource api {string}")
     public void executeTheMethodGetWithRandomIdFromScenario1WithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+getRandomIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
     //Para consultar todas las images por Id del escenario 1. Una por una, se repite la ejecución del escenario
@@ -126,19 +126,19 @@ public class ExecutionServicesStepDefinition {
     //Se ejecuta consulta de la imagen cargada con el id obtenido en el escenario 6 del Post ejecutado
     @When("Execute the method GET with upload Id with the resource api {string}")
     public void executeTheMethodGetWithTheUploadIdImage(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+getRandomIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
     //Se obtiene análisis de la imágen cargada en el escenario 6
     @When("Execute the method GET for analysys with the resource api {string}")
     public void executeTheMethodGet6WithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+getRandomIdImg()+"/"+"analysis"));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()+"/"+"analysis"));
     }
 
     //Se elimina la imagen cargada
     @When("Execute the method DELETE with the random Id with the resource api {string}")
     public void executeTheMethodDeleteWithTheRandomIdWithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(deleteCatItemWithThe(resourceApi+"/"+getRandomIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(deleteCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
     @When("Execute the method GET with params subid {string} for limit {int} with the resource api {string}")
