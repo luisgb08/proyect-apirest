@@ -105,7 +105,7 @@ Scenario: Make request to method Post for create favourite
   Given I make the connection to the api
   When Execute the method POST to create fav with the resource api "favourites"
   Then See that the code returned is 200
-  Then Check if the cat favourite was create successfuly
+  And Check if the cat favourite was create successfuly
 
 
 # Scenario 10:
@@ -133,7 +133,7 @@ Scenario: Make request to method Delete for delete fav cat image by id
   Given I make the connection to the api
   When Execute the method DELETE with fav Id with the resource api "favourites"
   Then See that the code returned is 200
-  Then Check if the cat favourite was deleted successfuly
+  And Check if the cat favourite was deleted successfuly
 
 # --------------------- FAVOURITES
 
@@ -154,6 +154,7 @@ Scenario: Make request to method Delete for try delete image already deleted
   Given I make the connection to the api
   When Execute the method DELETE with the random Id with the resource api "images"
   Then See that the code returned is 400
+  And Check if the received message is correct
 
 
 # Scenario 15: Unhappypath
@@ -172,6 +173,7 @@ Scenario: Make request to method Post for upload no cat image
   Given I open html form data passing a image
   When Execute the method POST with the resource api "images/upload" for no cat image
   Then See that the status code is 400
+  And Check if the message in the body response is correct
 
 
 # Scenario 17:

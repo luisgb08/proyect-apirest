@@ -15,8 +15,8 @@ import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import java.io.IOException;
-import static com.exceptions.ErrorAssertion.THE_CODES_DO_NOT_MATCH;
-import static com.exceptions.ErrorAssertion.THE_MESSAGE_DO_NOT_MATCH;
+
+import static com.exceptions.ErrorAssertion.*;
 import static com.factory.CreateCatImageDataFactory.IDFILEPOSITION;
 import static com.questions.Response.*;
 import static com.tasks.DeleteCatItem.deleteCatItemWithThe;
@@ -184,6 +184,19 @@ public class ExecutionServicesStepDefinition {
     public void executeTheMethodGetBySub_idWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi));
     }
+
+    @Then("Check if the received message is correct")
+    public void checkIfTheReceivedMessageIsCorrect() {
+        assertThat(THE_MESSAGE_DO_NOT_MATCH,
+                theActorInTheSpotlight().asksFor(getMessageUnhappyPath()), equalTo(INVALID_DATA));
+    }
+
+    @Then("Check if the message in the body response is correct")
+    public void checkIfTheMessageInTheBodyResponseIsCorrect() {
+        assertThat(THE_MESSAGE_DO_NOT_MATCH,
+                theActorInTheSpotlight().asksFor(getResponseUploadImage()), equalTo(NOCATIMG_RESPONSE));
+    }
+
 }
 
 

@@ -11,8 +11,7 @@ import org.junit.runner.RunWith;
         plugin = { "pretty", "html: target/cucumber" },
         glue = "com.stepdefinitions",
         tags = "@services",
-                //"@Get10Imagesx or @GetImageIdScenario1x or @GetAllImagesIdScenario1x or @GetRandomImageIdFilex or @GetAllImagesIdFilex",
-               // "@UploadImage or @UploadNoCatImage",
+               //"@Get10Imagesx",
         snippets = SnippetType.CAMELCASE,
         monochrome = true
 )

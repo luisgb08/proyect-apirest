@@ -9,12 +9,22 @@ public class PostUploadCatImg {
 
     static String statusCod;
 
+    static String response;
+
     public static String getUploadCatImgStatusCod() {
         return statusCod;
     }
 
     public static void setUploadCatImgStatusCod(String statusCod) {
         PostUploadCatImg.statusCod = statusCod;
+    }
+
+    public static String getResponseUploadImg() {
+        return response;
+    }
+
+    public static void setResponseUploadImg(String response) {
+        PostUploadCatImg.response = response;
     }
 
     public static void dataFormWebInteractions(String pathFile, String subid, String urlreq, String apikey) {
@@ -35,16 +45,16 @@ public class PostUploadCatImg {
         objIntFields.UPLOAD_BUTTON.click();
 
         try {
-            Thread.sleep(70000);
+            Thread.sleep(90000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         //Obtener respuesta
-        String resp = objIntFields.RESPONSE.getAttribute("value");
+        response = objIntFields.RESPONSE.getAttribute("value");
 
         //Imprimir respuesta de operación
-        System.out.println("Response POST: "+ resp);
+        System.out.println("Response POST: "+ response);
 
         System.out.println("\n");
 
@@ -61,7 +71,7 @@ public class PostUploadCatImg {
 
             //Se invoca método 'extractTPostImgId' al que se le pasa la respuesta obtenida en String, se encapsula en objeto Json, se extrae el id de la imagen cargada
             //Se crea lista con mapa con el id de la imagen, luego dicha lista se comparte con el otra clase para tenerla disponible en el escenario de consulta con GET de la imagen cargada
-            assignRandomUpIdImg(extractTPostImgId(resp), 2);
+            assignRandomUpIdImg(extractTPostImgId(response), 2);
         }
     }
 
