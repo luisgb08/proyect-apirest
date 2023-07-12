@@ -41,11 +41,13 @@ Esta ruta podría cambiar pero también se debe tener en cuenta el nombre de los
 - La imagen nocatimg.jpg hace referencia a una imagen que no tiene un gato y que podría intentar cargarse con el método POST en el Escenario 16
 
 
+
+
 ## EJECUCIÓN
 Para la ejecución del proyecto bastan con ejecutar la clase '**ExecuteService**' desde el paquete runners en:
 /Users/lfigueras/Documents/proyect-apirest/src/test/java/com/runners/ExecuteService.java
 
-## REPORTE DE EJECUIÓN
+## Reporte de ejecución
 Para la consulta del resporte de ejecución con Serenity BDD puede consultar la ruta:
 [ReporteApiRestTheCatApi](file:///Users/lfigueras/Documents/proyect-apirest/target/site/serenity/index.html)
 
