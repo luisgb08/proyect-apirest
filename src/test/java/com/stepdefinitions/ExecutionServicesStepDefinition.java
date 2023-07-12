@@ -21,7 +21,7 @@ import static com.factory.CreateCatImageDataFactory.IDFILEPOSITION;
 import static com.questions.Response.*;
 import static com.tasks.DeleteCatItem.deleteCatItemWithThe;
 import static com.tasks.GetCatImgList.executeGetMethodWithThe;
-import static com.tasks.GetSingleCatItem.executeGetMethodForSingleCatItemWithThe;
+import static com.tasks.GetSimpleCatItem.executeGetMethodForSimpleCatItemWithThe;
 import static com.tasks.GetUploadImgs.executeGetMethodForUploadImgWithTheElements;
 import static com.tasks.PostFavCatImg.createFavCatWithThe;
 import static com.tasks.UploadCatImgDataForm.uploadCatImgWithTheElements;
@@ -84,26 +84,26 @@ public class ExecutionServicesStepDefinition {
     //Se consulta una imagen según un id aleatorio del escenario 1
     @When("Execute the method GET with random Id from Scenario1 with the resource api {string}")
     public void executeTheMethodGetWithRandomIdFromScenario1WithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
     //Para consultar todas las images por Id del escenario 1. Una por una, se repite la ejecución del escenario
     @When("Execute the method GET with the Id {int} from scenario1 with the resource api {string}")
     public void executeTheMethodGETWithTheIdFromScenario1WithTheResourceApi(Integer numId, String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+getResponseList().get(numId).get("id").toString()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+getResponseList().get(numId).get("id").toString()));
     }
 
     //Ejecuta Get de consulta de una imagen  seleccionando un id random del archivo
     @When("Execute the method GET with the random Id from file with the resource api {string}")
     public void executeTheMethodGetWithTheRandomIdFromFileWithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+findIdImgFile("id"+ IDFILEPOSITION)));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+findIdImgFile("id"+ IDFILEPOSITION)));
     }
 
     //Ejecuta get para consulta de imagen de acuerdo a la posición a la posición de resgistro en el archivo
     //Se quiere consultar todas las imagenes dadas las posiciones indicadas en el feature
     @When("Execute the method GET with the Id {int} from file with the resource api {string}")
     public void executeTheMethodGETWithTheIdFromFileWithTheResourceApi(Integer numId, String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+findIdImgFile("id"+numId)));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+findIdImgFile("id"+numId)));
     }
 
     //Dado que el actor se le da la habiliadad de interactuar con el navegador
@@ -126,13 +126,13 @@ public class ExecutionServicesStepDefinition {
     //Se ejecuta consulta de la imagen cargada con el id obtenido en el escenario 6 del Post ejecutado
     @When("Execute the method GET with upload Id with the resource api {string}")
     public void executeTheMethodGetWithTheUploadIdImage(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
     //Se obtiene análisis de la imágen cargada en el escenario 6
     @When("Execute the method GET for analysys with the resource api {string}")
     public void executeTheMethodGet6WithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+ getIdImg()+"/"+"analysis"));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+ getIdImg()+"/"+"analysis"));
     }
 
     //Se elimina la imagen cargada
@@ -165,7 +165,7 @@ public class ExecutionServicesStepDefinition {
 
     @When("Execute the method GET with fav Id with the resource api {string}")
     public void executeTheMethodGetWithTheFavIdWithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSingleCatItemWithThe(resourceApi+"/"+getCatFavIdImg()));
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+getCatFavIdImg()));
     }
 
     //Se elimina el favorito de la imagen creado dado el Id del favorito
@@ -180,6 +180,10 @@ public class ExecutionServicesStepDefinition {
                 theActorInTheSpotlight().asksFor(getMessage()), equalTo(SUCCESS_MSG));
     }
 
+    @When("Execute the method GET by Sub_id with the resource api {string}")
+    public void executeTheMethodGetBySub_idWithTheResourceApi(String resourceApi) {
+        when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi));
+    }
 }
 
 

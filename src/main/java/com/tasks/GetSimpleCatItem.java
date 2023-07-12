@@ -8,11 +8,11 @@ import net.thucydides.core.annotations.Step;
 import static com.utils.ReadParamProperties.findParam;
 import static net.serenitybdd.rest.SerenityRest.given;
 
-public class GetSingleCatItem implements Task {
+public class GetSimpleCatItem implements Task {
 
     private final String resourceApi;
 
-    public GetSingleCatItem(String resourceApi) {
+    public GetSimpleCatItem(String resourceApi) {
         this.resourceApi = resourceApi;
     }
 
@@ -25,8 +25,8 @@ public class GetSingleCatItem implements Task {
                     .then().extract().response();
     }
 
-    public static GetSingleCatItem executeGetMethodForSingleCatItemWithThe(String resourceApi) {
-        return Tasks.instrumented(GetSingleCatItem.class, resourceApi);
+    public static GetSimpleCatItem executeGetMethodForSimpleCatItemWithThe(String resourceApi) {
+        return Tasks.instrumented(GetSimpleCatItem.class, resourceApi);
     }
 
 }

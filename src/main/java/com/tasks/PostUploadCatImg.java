@@ -35,7 +35,7 @@ public class PostUploadCatImg {
         objIntFields.UPLOAD_BUTTON.click();
 
         try {
-            Thread.sleep(120000);
+            Thread.sleep(70000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

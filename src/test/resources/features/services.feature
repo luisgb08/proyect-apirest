@@ -70,8 +70,8 @@ Scenario Outline: Make request to method Get for consult image by all ids from f
     |9   |
 
 
-#Scenario 6:
-#Permite probar la carga de una imágen que contenga un gato
+# Scenario 6:
+# Permite probar la carga de una imágen que contenga un gato
 @UploadImage   #Metodo Post
 Scenario: Make request to method Post for upload image
   Given I open html form data passing a image
@@ -79,8 +79,8 @@ Scenario: Make request to method Post for upload image
   Then See that the status code is 201
 
 
-#Scenario 7:
-#Se valida si la imagen cargada en el escenario 6 se encuentra cargada
+# Scenario 7:
+# Se valida si la imagen cargada en el escenario 6 se encuentra cargada
 @GetImageUpload
 Scenario: Make request to method Get for consult upload image
   Given I make the connection to the api
@@ -88,8 +88,8 @@ Scenario: Make request to method Get for consult upload image
   Then See that the code returned is 200
 
 
-#Scenario 8:
-#Se obtiene análisis de la imágen cargada
+# Scenario 8:
+# Se obtiene análisis de la imágen cargada
 @GetAnalysisImageUpload
 Scenario: Make request to method Get for image upload analysis
   Given I make the connection to the api
@@ -98,8 +98,8 @@ Scenario: Make request to method Get for image upload analysis
 
 
 # --------------------- FAVOURITES
-#Scenario 9:
-#Permite probar la carga de una imágen que contenga un gato
+# Scenario 9:
+# Creación de favorito a imagen cargada en Scenario6
 @CreateFavImage   #Metodo Post
 Scenario: Make request to method Post for create favourite
   Given I make the connection to the api
@@ -108,17 +108,26 @@ Scenario: Make request to method Post for create favourite
   Then Check if the cat favourite was create successfuly
 
 
-#Scenario 10:
-#Permite consultar favorito creado en escenario 9
-@GetFavImage
-Scenario: Make request to method Get for consult fav cat image
+# Scenario 10:
+# Permite consultar favorito creado en escenario 9
+@GetFavImageId
+Scenario: Make request to method Get for consult fav cat image by id
   Given I make the connection to the api
   When Execute the method GET with fav Id with the resource api "favourites"
   Then See that the code returned is 200
 
 
-#Scenario 11:
-#Se elimina favorito creado en escenario 9 dado su id
+# Scenario 11:
+# Permite consultar favorito creado en escenario 9 dado el Sub_id
+@GetFavImageSubId
+Scenario: Make request to method Get for consult fav cat image by sub_id
+  Given I make the connection to the api
+  When Execute the method GET by Sub_id with the resource api "favourites?sub_id=gabino88"
+  Then See that the code returned is 200
+
+
+# Scenario 12:
+# Se elimina favorito creado en escenario 9 dado su id
 @DeleteFavImage   #Metodo Delete
 Scenario: Make request to method Delete for delete fav cat image by id
   Given I make the connection to the api
@@ -129,8 +138,8 @@ Scenario: Make request to method Delete for delete fav cat image by id
 # --------------------- FAVOURITES
 
 
-#Scenario 12:
-#Se elimina la imagen previamente cargada en el Scenario 6
+# Scenario 13:
+# Se elimina la imagen previamente cargada en el Scenario 6
 @DeleteImage   #Metodo Delete
 Scenario: Make request to method Delete for delete image by id
   Given I make the connection to the api
@@ -138,8 +147,8 @@ Scenario: Make request to method Delete for delete image by id
   Then See that the code returned is 204
 
 
-#Scenario 13: Unhappypath
-#Se intenta eliminar nuevamente la imagen cargada que ya fue eliminada en el Scenario 9
+# Scenario 14: Unhappypath
+# Se intenta eliminar nuevamente la imagen cargada que ya fue eliminada en el Scenario 9
 @TryDeleteImgAgain   #Metodo Delete
 Scenario: Make request to method Delete for try delete image already deleted
   Given I make the connection to the api
@@ -147,8 +156,8 @@ Scenario: Make request to method Delete for try delete image already deleted
   Then See that the code returned is 400
 
 
-#Scenario 14: Unhappypath
-#Se intenta consultar la imagen previamente eliminada
+# Scenario 15: Unhappypath
+# Se intenta consultar la imagen previamente eliminada
 @GetTryDeleteImage
 Scenario: Make request to method Get for consult delete image
   Given I make the connection to the api
@@ -156,8 +165,8 @@ Scenario: Make request to method Get for consult delete image
   Then See that the code returned is 400
 
 
-#Scenario 15: Unhappypath
-#Permite probar que no se permita la carga de una imagen que no tenga un gato presente
+# Scenario 16: Unhappypath
+# Permite probar que no se permita la carga de una imagen que no tenga un gato presente
 @UploadNoCatImage   #Metodo Post
 Scenario: Make request to method Post for upload no cat image
   Given I open html form data passing a image
@@ -165,9 +174,9 @@ Scenario: Make request to method Post for upload no cat image
   Then See that the status code is 400
 
 
-##cenario 16:
-#Consultar las imagenes cargadas
-#Filtrar por Sub_id(2) y limit (2, 5)
+# Scenario 17:
+# Consultar las imagenes cargadas
+# Filtrar por Sub_id(2) y limit (2, 5)
 @GetImagesUpload
 Scenario Outline: Make request to method Get for consult all images upload previously
   Given I make the connection to the api
