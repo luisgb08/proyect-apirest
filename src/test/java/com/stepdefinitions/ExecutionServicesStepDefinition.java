@@ -75,6 +75,7 @@ public class ExecutionServicesStepDefinition {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodWithThe(resourceApi+paramPathS1()));
     }
 
+    //Valida el código de estado devuelto vs el código de estatus esperado que se pasa como parámetro desde el escenario en el feature
     @Then("See that the code returned is {int}")
     public void seeThatTheCodeReturnedIs(int statusCode) {
         assertThat(THE_CODES_DO_NOT_MATCH,
@@ -112,12 +113,13 @@ public class ExecutionServicesStepDefinition {
         givenThat(theActorCalled("Luis")).whoCan(BrowsingTheWeb.with(navigateTo(findParam("PATH_HTML_POST_PAGE"))));
     }
 
-    //Cargar imagen con método Post
+    //Cargar imagen de gato con método Post
     @When("Execute the method POST with the resource api {string}")
     public void executeTheMethodPOSTWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(uploadCatImgWithTheElements(findParam("PATH_IMG"),findParam("CAT_IMG_OK"),findParam("UPLOAD_SUB_ID"), resourceApi));
     }
 
+    //Se intenta cargar imagen sin gato con método Post
     @When("Execute the method POST with the resource api {string} for no cat image")
     public void executeTheMethodPOSTWithTheResourceApiForNoCatImage(String resourceApi) {
         when(theActorInTheSpotlight()).attemptsTo(uploadCatImgWithTheElements(findParam("PATH_IMG"),findParam("NO_CAT_IMG"),findParam("UPLOAD_SUB_ID"), resourceApi));
@@ -141,28 +143,33 @@ public class ExecutionServicesStepDefinition {
         when(theActorInTheSpotlight()).wasAbleTo(deleteCatItemWithThe(resourceApi+"/"+ getIdImg()));
     }
 
+    //Se consultan todas las imagenes cargadas dado los parámetros de sub_id y limit
     @When("Execute the method GET with params subid {string} for limit {int} with the resource api {string}")
     public void executeTheMethodGETWithParamsSubidLimitForResApi(String subid, Integer limit, String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForUploadImgWithTheElements(resourceApi, subid, limit));
     }
 
+    //Valida el código recibido en el formulario de carga de la imágen de gato vs el esperado indicado en el escenario del feature
     @Then("See that the status code is {int}")
     public void seeThatTheStatusCodeIs (int statusCode) {
         assertThat(THE_CODES_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getUploadCatImgStatusCode()), equalTo(statusCode));
     }
 
+    //Se crea favorito para la imágen cargada
     @When("Execute the method POST to create fav with the resource api {string}")
     public void executeTheMethodPOSTToCreateFavWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(createFavCatWithThe(resourceApi));
     }
 
+    //Valida el mensaje recibido después de creado el favorito
     @Then("Check if the cat favourite was create successfuly")
     public void checkIfTheCatFavouriteWasCreateSuccessfuly() {
         assertThat(THE_MESSAGE_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getMessage()), equalTo(SUCCESS_MSG));
     }
 
+    //Se consulta el favorito creado
     @When("Execute the method GET with fav Id with the resource api {string}")
     public void executeTheMethodGetWithTheFavIdWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi+"/"+getCatFavIdImg()));
@@ -174,23 +181,27 @@ public class ExecutionServicesStepDefinition {
         when(theActorInTheSpotlight()).wasAbleTo(deleteCatItemWithThe(resourceApi+"/"+getCatFavIdImg()));
     }
 
+    //Se valida mensaje de eliminación de favorito
     @Then("Check if the cat favourite was deleted successfuly")
     public void checkIfTheCatFavouriteWasDeletedSuccessfuly() {
         assertThat(THE_MESSAGE_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getMessage()), equalTo(SUCCESS_MSG));
     }
 
+    //Consulta favoritos dado un sub_id
     @When("Execute the method GET by Sub_id with the resource api {string}")
     public void executeTheMethodGetBySub_idWithTheResourceApi(String resourceApi) {
         when(theActorInTheSpotlight()).wasAbleTo(executeGetMethodForSimpleCatItemWithThe(resourceApi));
     }
 
+    //Valida el código recibido en el formulario de carga de la imágen sin gato vs el esperado indicado en el escenario del feature
     @Then("Check if the received message is correct")
     public void checkIfTheReceivedMessageIsCorrect() {
         assertThat(THE_MESSAGE_DO_NOT_MATCH,
                 theActorInTheSpotlight().asksFor(getMessageUnhappyPath()), equalTo(INVALID_DATA));
     }
 
+    //Validar si el mensaje cuando no se carga una imagen de gato es correcto
     @Then("Check if the message in the body response is correct")
     public void checkIfTheMessageInTheBodyResponseIsCorrect() {
         assertThat(THE_MESSAGE_DO_NOT_MATCH,

@@ -98,6 +98,7 @@ Scenario: Make request to method Get for image upload analysis
 
 
 # --------------------- FAVOURITES
+
 # Scenario 9:
 # Creación de favorito a imagen cargada en Scenario6
 @CreateFavImage   #Metodo Post
