@@ -42,7 +42,6 @@ Esta ruta podría cambiar pero también se debe tener en cuenta el nombre de los
 
 
 
-
 ## EJECUCIÓN
 Para la ejecución del proyecto bastan con ejecutar la clase '**ExecuteService**' desde el paquete runners en:
 '_/Users/lfigueras/Documents/proyect-apirest/src/test/java/com/runners/ExecuteService.java_'
