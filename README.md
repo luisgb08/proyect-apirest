@@ -3,7 +3,9 @@ Repositorio Personal Proyecto Semillero automation LB
 
 En este repositorio se aloja el Proyecto Final del Semillerio de Automatización de Lulo Bank de Julio de 2023
 
-# Api a probar: https://api.thecatapi.com/v1
+# Api a probar
+https://api.thecatapi.com/v1
+
 ## Módulos a probar:
 - Images
 - Favourites
@@ -39,7 +41,7 @@ Esta ruta podría cambiar pero también se debe tener en cuenta el nombre de los
 - La imagen nocatimg.jpg hace referencia a una imagen que no tiene un gato y que podría intentar cargarse con el método POST en el Escenario 16
 
 
-# EJECUCIÓN
+## EJECUCIÓN
 Para la ejecución del proyecto bastan con ejecutar la clase '**ExecuteService**' desde el paquete runners en:
 /Users/lfigueras/Documents/proyect-apirest/src/test/java/com/runners/ExecuteService.java
 
