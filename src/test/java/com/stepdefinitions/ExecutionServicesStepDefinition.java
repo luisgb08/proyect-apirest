@@ -23,7 +23,7 @@ import static com.tasks.DeleteCatItem.deleteCatItemWithThe;
 import static com.tasks.GetCatImgList.executeGetMethodWithThe;
 import static com.tasks.GetSimpleCatItem.executeGetMethodForSimpleCatItemWithThe;
 import static com.tasks.GetUploadImgs.executeGetMethodForUploadImgWithTheElements;
-import static com.tasks.PostFavCatImg.createFavCatWithThe;
+import static com.tasks.PostFavCatImg.createFavCatWithTheElements;
 import static com.tasks.UploadCatImgDataForm.uploadCatImgWithTheElements;
 import static com.utils.Constants.SUCCESS_MSG;
 import static com.utils.MakeParamsPathS1.paramPathS1;
@@ -159,7 +159,7 @@ public class ExecutionServicesStepDefinition {
     //Se crea favorito para la imágen cargada
     @When("Execute the method POST to create fav with the resource api {string}")
     public void executeTheMethodPOSTToCreateFavWithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(createFavCatWithThe(resourceApi));
+        when(theActorInTheSpotlight()).wasAbleTo(createFavCatWithTheElements(resourceApi, getIdImg(), findParam("UPLOAD_SUB_ID")));
     }
 
     //Valida el mensaje recibido después de creado el favorito

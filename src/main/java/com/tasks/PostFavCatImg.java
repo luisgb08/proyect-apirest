@@ -9,22 +9,25 @@ import org.json.JSONObject;
 import static com.models.CreateFavCatImgRequestBuilder.aFavCatImg;
 import static com.utils.ReadParamProperties.findParam;
 import static com.utils.SaveFavCatIdImg.*;
-import static com.utils.SelectSaveIdImg.getIdImg;
 import static net.serenitybdd.rest.SerenityRest.given;
 
 public class PostFavCatImg implements Task {
 
     private final String resourceApi;
+    private final String idImage;
+    private final String subId;
 
-    public PostFavCatImg(String resourceApi) {
+    public PostFavCatImg(String resourceApi, String idImage, String subId) {
         this.resourceApi = resourceApi;
+        this.idImage = idImage;
+        this.subId = subId;
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
          CreateFavCatRequest catfav = aFavCatImg()
-                .withImage_id(getIdImg())
-                .withSub_id(findParam("UPLOAD_SUB_ID"))
+                .withImage_id(idImage)
+                .withSub_id(subId)
                 .build();
 
         String catfavJson = new Gson().toJson(catfav);
@@ -46,8 +49,8 @@ public class PostFavCatImg implements Task {
         setCatFavIdImg(idFav);
     }
 
-    public static PostFavCatImg createFavCatWithThe(String resourceApi) {
-        return Tasks.instrumented(PostFavCatImg.class, resourceApi);
+    public static PostFavCatImg createFavCatWithTheElements(String resourceApi, String idImage, String subId) {
+        return Tasks.instrumented(PostFavCatImg.class, resourceApi, idImage, subId);
     }
 
 }
