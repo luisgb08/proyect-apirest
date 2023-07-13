@@ -29,6 +29,7 @@ import static com.utils.Constants.SUCCESS_MSG;
 import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findIdImgFile;
 import static com.utils.SaveFavCatIdImg.getCatFavIdImg;
+import static com.utils.SelectMsgUploadImgUP.MsgUploadImgUP;
 import static com.utils.SelectSaveIdImg.getIdImg;
 import static com.utils.TransferResponseListS1.getResponseList;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
@@ -202,10 +203,11 @@ public class ExecutionServicesStepDefinition {
     }
 
     //Validar si el mensaje cuando no se carga una imagen de gato es correcto
-    @Then("Check if the message in the body response is correct")
-    public void checkIfTheMessageInTheBodyResponseIsCorrect() {
-        assertThat(THE_MESSAGE_DO_NOT_MATCH,
-                theActorInTheSpotlight().asksFor(getResponseUploadImage()), equalTo(NOCATIMG_RESPONSE));
+    //Se valida mensaje dependiendo de la resource api upload o upload2
+    @Then("Check if the message in the body response is correct with the message {int}")
+    public void checkIfTheMessageInTheBodyResponseIsCorrectWithTheMessage(int typeMsg) {
+            assertThat(THE_MESSAGE_DO_NOT_MATCH,
+                    theActorInTheSpotlight().asksFor(getResponseUploadImage()), equalTo(MsgUploadImgUP(typeMsg)));
     }
 
 }

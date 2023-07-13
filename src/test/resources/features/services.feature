@@ -168,13 +168,18 @@ Scenario: Make request to method Get for consult delete image
 
 
 # Scenario 16: Unhappypath
-# Permite probar que no se permita la carga de una imagen que no tenga un gato presente
+# Permite probar que no se permita la carga de una imagen que no tenga un gato presente (upload)
+# Permite probar con la misma imagen sin gato pero con otro mensaje de respuesta (upload2)
 @UploadNoCatImage   #Metodo Post
-Scenario: Make request to method Post for upload no cat image
+Scenario Outline: Make request to method Post for upload no cat image
   Given I open html form data passing a image
-  When Execute the method POST with the resource api "images/upload" for no cat image
+  When Execute the method POST with the resource api <resourceApi> for no cat image
   Then See that the status code is 400
-  And Check if the message in the body response is correct
+  And Check if the message in the body response is correct with the message <typeMsg>
+  Examples:
+    |resourceApi       |typeMsg  |
+    |"images/upload"   |1        |
+    |"images/upload2"  |2        |
 
 
 # Scenario 17:
@@ -189,3 +194,4 @@ Scenario Outline: Make request to method Get for consult all images upload previ
     |subId       |limit     |
     |"1245lf"    |2         |
     |"gabino22"  |5         |
+    |"gabino24"  |3         |

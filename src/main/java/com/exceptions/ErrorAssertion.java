@@ -5,5 +5,6 @@ public class ErrorAssertion extends AssertionError {
     public static final String THE_MESSAGE_DO_NOT_MATCH = "The message do not match";
     public static final String INVALID_DATA = "INVALID_DATA";
     public static final String NOCATIMG_RESPONSE = "Error: Classifcation failed: correct animal not found.";
+    public static final String ERROR_UPLOADING_IMG = "Error: Error uploading the image, check its valid and try again.";
 
 }
