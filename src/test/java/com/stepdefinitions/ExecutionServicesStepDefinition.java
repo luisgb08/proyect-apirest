@@ -15,7 +15,6 @@ import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import java.io.IOException;
-
 import static com.exceptions.ErrorAssertion.*;
 import static com.factory.CreateCatImageDataFactory.IDFILEPOSITION;
 import static com.questions.Response.*;

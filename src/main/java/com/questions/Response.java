@@ -3,7 +3,6 @@ package com.questions;
 import io.restassured.path.json.JsonPath;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Question;
-
 import static com.tasks.PostUploadCatImg.getResponseUploadImg;
 import static com.tasks.PostUploadCatImg.getUploadCatImgStatusCod;
 
