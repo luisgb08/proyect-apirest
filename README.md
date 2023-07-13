@@ -47,5 +47,5 @@ Para la ejecución del proyecto bastan con ejecutar la clase '**ExecuteService**
 '_/Users/lfigueras/Documents/proyect-apirest/src/test/java/com/runners/ExecuteService.java_'
 
 ## Reporte de ejecución
-Para la consulta del resporte de ejecución con Serenity BDD puede consultar la ruta:
-[ReporteApiRestTheCatApi](file:///Users/lfigueras/Documents/proyect-apirest/target/site/serenity/index.html)
+Para la consulta del reporte de ejecución con Serenity BDD puede consultar la ruta en la carpeta del proyecto:
+'_proyect-apirest/target/site/serenity/index.html_'
