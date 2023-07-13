@@ -30,15 +30,14 @@ public class PostUploadCatImg {
     public static void dataFormWebInteractions(String pathFile, String subid, String urlreq, String apikey) {
         Cats objIntFields = new Cats();
 
+        //Intercacciones: Se envian valores a los campos
+        objIntFields.INPUT_FILE.sendKeys(String.valueOf(pathFile));
+
+        objIntFields.INPUT_SUBID.sendKeys(String.valueOf(subid));
+
         objIntFields.URLPOSTREQ.sendKeys(String.valueOf(urlreq));
 
         objIntFields.APIKEY.sendKeys(String.valueOf(apikey));
-
-        //Interacción 1: Enviar valor
-        objIntFields.INPUT_FILE.sendKeys(String.valueOf(pathFile));
-
-        //Interacción 2: Enviar valor
-        objIntFields.INPUT_SUBID.sendKeys(String.valueOf(subid));
 
         //Acá se hace el Post con JavaScript
         //Hacer clic sobre el botón para la acción: Submit
