@@ -24,6 +24,7 @@ import static com.tasks.GetSimpleCatItem.executeGetMethodForSimpleCatItemWithThe
 import static com.tasks.GetUploadImgs.executeGetMethodForUploadImgWithTheElements;
 import static com.tasks.PostFavCatImg.createFavCatWithTheElements;
 import static com.tasks.UploadCatImgDataForm.uploadCatImgWithTheElements;
+import static com.tasks.UploadCatImgRestAssured.uploadCatImgWithTheElements2;
 import static com.utils.Constants.SUCCESS_MSG;
 import static com.utils.MakeParamsPathS1.paramPathS1;
 import static com.utils.ReadParamProperties.findIdImgFile;
@@ -116,7 +117,7 @@ public class ExecutionServicesStepDefinition {
     //Cargar imagen de gato con método Post
     @When("Execute the method POST with the resource api {string}")
     public void executeTheMethodPOSTWithTheResourceApi(String resourceApi) {
-        when(theActorInTheSpotlight()).wasAbleTo(uploadCatImgWithTheElements(findParam("PATH_IMG"),findParam("CAT_IMG_OK"),findParam("UPLOAD_SUB_ID"), resourceApi));
+        when(theActorInTheSpotlight()).wasAbleTo(uploadCatImgWithTheElements2(findParam("PATH_IMG"),findParam("CAT_IMG_OK"),findParam("UPLOAD_SUB_ID"), resourceApi));
     }
 
     //Se intenta cargar imagen sin gato con método Post

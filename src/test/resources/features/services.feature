@@ -79,6 +79,14 @@ Scenario: Make request to method Post for upload image
   Then See that the status code is 201
 
 
+# Scenario 6.2:
+# Permite probar la carga de una imágen que contenga un gato
+    @UploadImage2   #Metodo Post
+    Scenario: Make request to method Post for upload image
+      Given I make the connection to the api
+      When Execute the method POST with the resource api "images/upload"
+      Then See that the status code is 201
+
 # Scenario 7:
 # Se valida si la imagen cargada en el escenario 6 se encuentra cargada
 @GetImageUpload

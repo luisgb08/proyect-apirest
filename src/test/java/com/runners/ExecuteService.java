@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         plugin = { "pretty", "html: target/cucumber" },
         glue = "com.stepdefinitions",
-        tags = "@services",
+        tags = "@UploadImage2",
         snippets = SnippetType.CAMELCASE,
         monochrome = true
 )
